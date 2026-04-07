@@ -1,0 +1,749 @@
+<!doctype html>
+<!--<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>my-project</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>-->
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nohtek — ERP at the Speed of Light</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        obsidian: '#0B0C10',
+        'space-dark': '#0F1117',
+        'space-mid': '#161B27',
+        'space-surface': '#1C2333',
+        cinnabar: '#E71D36',
+        cream: '#FFF8E1',
+        amber: '#FF9F1C',
+        'star-white': '#E8EAF0',
+      },
+      fontFamily: {
+        sans: ['Space Grotesk', 'sans-serif'],
+        mono: ['Space Mono', 'monospace'],
+      },
+    }
+  }
+}
+</script>
+<style>
+  :root { --cinnabar:#E71D36; --amber:#FF9F1C; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:#0B0C10;color:#C8CDD8;font-family:'Space Grotesk',sans-serif;}
+
+  #starfield{position:fixed;inset:0;pointer-events:none;z-index:0;}
+
+  .nebula-r{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(ellipse,rgba(231,29,54,0.16) 0%,transparent 70%);}
+  .nebula-a{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(ellipse,rgba(255,159,28,0.10) 0%,transparent 65%);}
+  .nebula-b{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(ellipse,rgba(50,80,200,0.09) 0%,transparent 65%);}
+
+  section,footer,nav{position:relative;z-index:1;}
+
+  .hud-grid{background-image:linear-gradient(rgba(231,29,54,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(231,29,54,0.04) 1px,transparent 1px);background-size:50px 50px;}
+
+  .orbit-ring{position:absolute;border-radius:50%;border:1px solid rgba(231,29,54,0.12);animation:spin linear infinite;}
+  .orbit-ring::before{content:'';position:absolute;width:5px;height:5px;background:#E71D36;border-radius:50%;top:-2.5px;left:50%;margin-left:-2.5px;box-shadow:0 0 8px 2px rgba(231,29,54,0.7);}
+  @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+  .cta-btn{position:relative;overflow:hidden;background:#E71D36;color:#fff;font-family:'Space Grotesk',sans-serif;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:transform .2s,box-shadow .2s;}
+  .cta-btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(231,29,54,.5),0 0 60px rgba(231,29,54,.15);}
+
+  .outline-btn{border:1px solid rgba(200,205,216,.15);color:#C8CDD8;font-family:'Space Grotesk',sans-serif;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:border-color .2s,color .2s,box-shadow .2s;}
+  .outline-btn:hover{border-color:rgba(231,29,54,.4);color:#fff;box-shadow:0 0 16px rgba(231,29,54,.1);}
+
+  .plan-card{background:#0F1320;border:1px solid rgba(200,205,216,.07);transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;overflow:hidden;}
+  .plan-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(231,29,54,.3),transparent);opacity:0;transition:opacity .3s;}
+  .plan-card:hover{transform:translateY(-4px);box-shadow:0 0 40px rgba(231,29,54,.07),0 16px 40px rgba(0,0,0,.4);border-color:rgba(231,29,54,.2);}
+  .plan-card:hover::before{opacity:1;}
+  .plan-card.featured{border-color:rgba(231,29,54,.45);}
+  .plan-card.featured::before{opacity:1;}
+  .plan-card.selected{border-color:rgba(231,29,54,.6)!important;background:rgba(231,29,54,.04)!important;}
+
+  .hw-card{background:#0A0D15;border:1px solid rgba(255,159,28,.14);transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;overflow:hidden;}
+  .hw-card:hover{transform:translateY(-4px);box-shadow:0 0 40px rgba(255,159,28,.1),0 16px 40px rgba(0,0,0,.5);border-color:rgba(255,159,28,.4);}
+  .hw-card.selected{border-color:rgba(255,159,28,.65)!important;}
+
+  #cart-panel{position:fixed;right:0;top:0;height:100vh;width:300px;background:#070910;border-left:1px solid rgba(231,29,54,.18);transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);z-index:50;overflow-y:auto;}
+  #cart-panel.open{transform:translateX(0);box-shadow:-20px 0 60px rgba(0,0,0,.8);}
+  #cart-panel::-webkit-scrollbar{width:2px;}
+  #cart-panel::-webkit-scrollbar-thumb{background:rgba(231,29,54,.3);}
+
+  .toggle-track{width:44px;height:24px;background:rgba(200,205,216,.12);border-radius:12px;position:relative;cursor:pointer;transition:background .3s;border:1px solid rgba(200,205,216,.08);}
+  .toggle-track.on{background:rgba(231,29,54,.28);border-color:rgba(231,29,54,.45);}
+  .toggle-thumb{position:absolute;top:3px;left:3px;width:16px;height:16px;background:#C8CDD8;border-radius:50%;transition:left .3s;}
+  .toggle-track.on .toggle-thumb{left:23px;background:#E71D36;}
+
+  .badge-ai{background:rgba(231,29,54,.1);color:#FF6B7A;font-size:10px;padding:2px 7px;border-radius:2px;font-weight:500;border:1px solid rgba(231,29,54,.18);font-family:'Space Mono',monospace;}
+  .badge-human{background:rgba(255,159,28,.09);color:#FFB84D;font-size:10px;padding:2px 7px;border-radius:2px;font-weight:500;border:1px solid rgba(255,159,28,.18);font-family:'Space Mono',monospace;}
+  .badge-pop{background:#E71D36;color:#fff;font-size:9px;padding:2px 8px;border-radius:2px;font-weight:700;letter-spacing:.08em;font-family:'Space Mono',monospace;}
+
+  .mono{font-family:'Space Mono',monospace;}
+  .coord{font-family:'Space Mono',monospace;font-size:10px;color:rgba(200,205,216,.25);letter-spacing:.05em;}
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  .section-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(231,29,54,.18),transparent);}
+
+  .cart-row{border-bottom:1px solid rgba(255,255,255,.04);}
+
+  .pillar-card{background:#0F1320;border:1px solid rgba(200,205,216,.06);transition:border-color .3s,box-shadow .3s;}
+  .pillar-card:hover{border-color:rgba(231,29,54,.22);box-shadow:0 0 30px rgba(231,29,54,.05);}
+
+  .addon-card{background:#0F1320;border:1px solid rgba(200,205,216,.07);transition:border-color .3s,box-shadow .3s;}
+  .addon-card.active{border-color:rgba(231,29,54,.32);box-shadow:0 0 24px rgba(231,29,54,.06);}
+
+  .status-dot{width:6px;height:6px;border-radius:50%;background:#22C55E;box-shadow:0 0 6px 2px rgba(34,197,94,.5);animation:pdot 2s ease-in-out infinite;}
+  @keyframes pdot{0%,100%{opacity:1}50%{opacity:.4}}
+
+  .ticker-wrap{overflow:hidden;white-space:nowrap;}
+  .ticker{display:inline-block;animation:tick 28s linear infinite;}
+  @keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+  .shoot{position:fixed;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);animation:shoota linear forwards;opacity:0;pointer-events:none;z-index:2;}
+  @keyframes shoota{0%{opacity:0;width:0}10%{opacity:1}100%{opacity:0;width:120px;transform:translate(300px,70px)}}
+
+  .bracket{position:relative;}
+  .bracket::before,.bracket::after{content:'';position:absolute;width:12px;height:12px;border-color:rgba(231,29,54,.4);border-style:solid;}
+  .bracket::before{top:0;left:0;border-width:1px 0 0 1px;}
+  .bracket::after{bottom:0;right:0;border-width:0 1px 1px 0;}
+</style>
+</head>
+<body class="antialiased">
+
+<canvas id="starfield"></canvas>
+
+<!-- Cart button -->
+<button onclick="toggleCart()" id="cart-toggle"
+  class="fixed top-6 right-6 z-40 flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all"
+  style="background:rgba(12,16,28,.92);border:1px solid rgba(231,29,54,.28);color:#C8CDD8;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));">
+  <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
+    <path d="M16 10a4 4 0 01-8 0"/>
+  </svg>
+  <span class="mono text-xs">MISSION BAY</span>
+  <span id="cart-count" class="bg-cinnabar text-white text-xs rounded-sm w-5 h-5 flex items-center justify-center mono">0</span>
+</button>
+
+<!-- CART PANEL -->
+<div id="cart-panel">
+  <div class="p-5 flex justify-between items-center" style="border-bottom:1px solid rgba(231,29,54,.15);">
+    <div>
+      <div class="flex items-center gap-2 mb-1">
+        <div class="status-dot"></div>
+        <span class="mono text-xs tracking-widest" style="color:#E71D36;">MISSION CONTROL</span>
+      </div>
+      <h3 class="text-star-white text-sm font-medium">Your Configuration</h3>
+    </div>
+    <button onclick="toggleCart()" class="text-gray-600 hover:text-gray-300 transition-colors">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="p-5">
+    <p class="mono text-xs text-gray-600 tracking-widest mb-3">// SOFTWARE</p>
+    <div id="cart-plans" class="space-y-2 mb-5"><p class="text-gray-600 text-xs" id="cart-plans-empty">— none selected</p></div>
+    <p class="mono text-xs text-gray-600 tracking-widest mb-3">// HARDWARE</p>
+    <div id="cart-hw" class="space-y-2 mb-5"><p class="text-gray-600 text-xs" id="cart-hw-empty">— none selected</p></div>
+    <p class="mono text-xs text-gray-600 tracking-widest mb-3">// ADD-ONS</p>
+    <div id="cart-addons" class="space-y-2 mb-6"><p class="text-gray-600 text-xs" id="cart-addons-empty">— none selected</p></div>
+    <div class="pt-5 space-y-3" style="border-top:1px solid rgba(255,255,255,.04);">
+      <div class="flex justify-between">
+        <span class="mono text-xs text-gray-500">MONTHLY BURN</span>
+        <span class="text-star-white font-medium mono" id="total-monthly">$0</span>
+      </div>
+      <div class="flex justify-between">
+        <span class="mono text-xs text-gray-500">ONE-TIME COST</span>
+        <span class="mono font-medium" style="color:#FF9F1C;" id="total-onetime">$0</span>
+      </div>
+    </div>
+    <button class="cta-btn w-full mt-6 py-3 text-sm font-medium">Request Launch →</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="relative min-h-screen flex items-center hud-grid overflow-hidden">
+  <div class="nebula-r" style="width:700px;height:700px;top:-150px;right:-80px;"></div>
+  <div class="nebula-b" style="width:500px;height:500px;bottom:-100px;left:-80px;"></div>
+
+  <div class="orbit-ring" style="width:280px;height:280px;top:50%;left:68%;margin:-140px 0 0 -140px;animation-duration:18s;"></div>
+  <div class="orbit-ring" style="width:460px;height:460px;top:50%;left:68%;margin:-230px 0 0 -230px;animation-duration:32s;animation-direction:reverse;opacity:.4;"></div>
+  <div class="orbit-ring" style="width:640px;height:640px;top:50%;left:68%;margin:-320px 0 0 -320px;animation-duration:55s;opacity:.2;"></div>
+
+  <div class="absolute top-8 left-8 coord hidden md:block">LAT 34.052°N · LON 118.243°W · ALT 420km</div>
+  <div class="absolute top-8 left-1/2 -translate-x-1/2 coord hidden md:block">NOHTEK ORBITAL PLATFORM v2.4.1</div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6 py-36 w-full">
+    <div class="max-w-3xl">
+      <div class="flex items-center gap-3 mb-10">
+        <svg width="44" height="36" viewBox="0 0 48 40" fill="none">
+          <polygon points="12,40 30,0 48,40 38,40 30,20 22,40" fill="#E71D36"/>
+          <polygon points="0,40 18,0 24,14 12,40" fill="rgba(231,29,54,.28)" stroke="#E71D36" stroke-width=".5"/>
+        </svg>
+        <div>
+          <span class="text-star-white mono text-xl tracking-[.2em]">NOHTEK</span>
+          <span class="block mono text-xs tracking-widest" style="color:rgba(231,29,54,.8);">ERP SOLUTION · EST. 2024</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 mb-5">
+        <div class="status-dot"></div>
+        <span class="mono text-xs tracking-widest" style="color:#E71D36;">SYSTEM ONLINE · ALL MODULES OPERATIONAL</span>
+      </div>
+
+      <h1 class="text-star-white font-medium leading-none mb-6 tracking-tight" style="font-size:clamp(2.8rem,7vw,5.5rem);">
+        Intelligence<br/>at the<br/><span style="color:#E71D36;">speed of light.</span>
+      </h1>
+
+      <p class="text-gray-400 text-lg leading-relaxed mb-10 max-w-xl">
+        Enterprise ERP fused with AI intelligence and a human execution network. Three layers, one system — engineered for orbit.
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="#pricing" class="cta-btn px-8 py-4 text-base font-medium">Explore Plans →</a>
+        <a href="#pillars" class="outline-btn px-8 py-4 text-base font-medium">Mission briefing</a>
+      </div>
+
+      <div class="flex flex-wrap gap-8 mt-14 pt-8" style="border-top:1px solid rgba(255,255,255,.05);">
+        <div>
+          <p class="mono text-2xl text-star-white">99.9<span style="color:#E71D36;">%</span></p>
+          <p class="text-xs text-gray-500 mt-1">Uptime SLA</p>
+        </div>
+        <div class="pl-8" style="border-left:1px solid rgba(255,255,255,.05);">
+          <p class="mono text-2xl text-star-white">3<span style="color:#E71D36;">×</span></p>
+          <p class="text-xs text-gray-500 mt-1">Faster decisions</p>
+        </div>
+        <div class="pl-8" style="border-left:1px solid rgba(255,255,255,.05);">
+          <p class="mono text-2xl text-star-white">L1<span style="color:#FF9F1C;">+</span>L3</p>
+          <p class="text-xs text-gray-500 mt-1">AI + Human layers</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-0 right-0 h-32" style="background:linear-gradient(to bottom,transparent,#0B0C10);"></div>
+</section>
+
+<!-- TICKER -->
+<div class="py-3 overflow-hidden" style="background:rgba(231,29,54,.07);border-top:1px solid rgba(231,29,54,.14);border-bottom:1px solid rgba(231,29,54,.14);">
+  <div class="ticker-wrap">
+    <div class="ticker mono text-xs tracking-widest" style="color:#E71D36;">
+      &nbsp;&nbsp;· AI CORE ACTIVE &nbsp;&nbsp;· ERP MODULES ONLINE &nbsp;&nbsp;· HUMAN NETWORK L2/L3 STANDBY &nbsp;&nbsp;· REAL-TIME ANALYTICS &nbsp;&nbsp;· MISSION CONTROL READY &nbsp;&nbsp;· SECURE ENCRYPTED CHANNEL &nbsp;&nbsp;· 420+ INTEGRATIONS &nbsp;&nbsp;· DEPLOY IN 48H &nbsp;&nbsp;· AI CORE ACTIVE &nbsp;&nbsp;· ERP MODULES ONLINE &nbsp;&nbsp;· HUMAN NETWORK L2/L3 STANDBY &nbsp;&nbsp;· REAL-TIME ANALYTICS &nbsp;&nbsp;· MISSION CONTROL READY &nbsp;&nbsp;· SECURE ENCRYPTED CHANNEL &nbsp;&nbsp;· 420+ INTEGRATIONS &nbsp;&nbsp;· DEPLOY IN 48H
+    </div>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<section id="pillars" class="py-28 max-w-6xl mx-auto px-6">
+  <div class="text-center mb-16 reveal">
+    <p class="mono text-xs tracking-widest mb-4" style="color:#E71D36;">// ARCHITECTURE</p>
+    <h2 class="text-star-white text-4xl font-medium mb-4">Three layers. One system.</h2>
+    <p class="text-gray-500 text-sm max-w-lg mx-auto">From the intelligence core to the human network — every layer amplifies the one above it.</p>
+  </div>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="pillar-card p-8 reveal bracket">
+      <div class="w-10 h-10 mb-6 flex items-center justify-center" style="border:1px solid rgba(231,29,54,.28);background:rgba(231,29,54,.07);">
+        <svg width="20" height="20" fill="none" stroke="#E71D36" stroke-width="1.5" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+        </svg>
+      </div>
+      <div class="badge-ai mb-4 inline-block">L1 — AI CORE</div>
+      <h3 class="text-star-white text-xl font-medium mb-3">AI Intelligence</h3>
+      <p class="text-gray-500 text-sm leading-relaxed">Predictive analytics, automated workflows, intelligent decision support — running at computation speed, continuously.</p>
+    </div>
+    <div class="pillar-card p-8 reveal bracket" style="transition-delay:.1s;">
+      <div class="w-10 h-10 mb-6 flex items-center justify-center" style="border:1px solid rgba(200,205,216,.14);background:rgba(200,205,216,.04);">
+        <svg width="20" height="20" fill="none" stroke="#C8CDD8" stroke-width="1.5" viewBox="0 0 24 24">
+          <rect x="2" y="3" width="20" height="14" rx="1"/><path d="M8 21h8M12 17v4M7 8h10M7 12h6"/>
+        </svg>
+      </div>
+      <div class="mono text-xs text-gray-400 border px-2 py-0.5 inline-block mb-4" style="border-color:rgba(200,205,216,.14);">CORE SYSTEM</div>
+      <h3 class="text-star-white text-xl font-medium mb-3">ERP Modules</h3>
+      <p class="text-gray-500 text-sm leading-relaxed">Finance, inventory, HR, CRM, procurement and more — modular by design, deeply integrated by default.</p>
+    </div>
+    <div class="pillar-card p-8 reveal bracket" style="transition-delay:.2s;">
+      <div class="w-10 h-10 mb-6 flex items-center justify-center" style="border:1px solid rgba(255,159,28,.28);background:rgba(255,159,28,.07);">
+        <svg width="20" height="20" fill="none" stroke="#FF9F1C" stroke-width="1.5" viewBox="0 0 24 24">
+          <circle cx="9" cy="7" r="3"/><circle cx="15" cy="7" r="3"/>
+          <path d="M3 21v-2a6 6 0 0112 0v2"/><path d="M18 9a3 3 0 010 6"/><path d="M21 21v-2a6 6 0 00-3-5.2"/>
+        </svg>
+      </div>
+      <div class="badge-human mb-4 inline-block">L2/L3 — HUMAN NETWORK</div>
+      <h3 class="text-star-white text-xl font-medium mb-3">Human Execution</h3>
+      <p class="text-gray-500 text-sm leading-relaxed">Certified specialists on demand. When AI escalates, humans take over — seamlessly, at mission speed.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PRICING -->
+<section id="pricing" class="py-28 max-w-6xl mx-auto px-6">
+  <div class="text-center mb-6 reveal">
+    <p class="mono text-xs tracking-widest mb-4" style="color:#E71D36;">// MISSION PACKAGES</p>
+    <h2 class="text-star-white text-4xl font-medium mb-4">Choose your trajectory</h2>
+    <p class="text-gray-500 text-sm max-w-lg mx-auto">Every plan includes L1 AI as standard. Modular by design — deploy only what your mission requires.</p>
+  </div>
+
+  <!-- Tier 1 -->
+  <div class="reveal mb-10">
+    <div class="flex items-center gap-3 mb-5 mt-12">
+      <div class="h-px flex-1" style="background:rgba(200,205,216,.05);"></div>
+      <p class="mono text-xs text-gray-500 tracking-widest">TIER-1 · STARTER</p>
+      <div class="h-px flex-1" style="background:rgba(200,205,216,.05);"></div>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Micro Core','$49/mo',49)">
+        <div class="coord mb-3">PKG-001</div>
+        <div class="flex justify-between items-start mb-5">
+          <div><h4 class="text-star-white font-medium">Micro Core</h4><p class="text-gray-500 text-xs mt-1">Solo operators & freelancers</p></div>
+          <span class="mono text-xl text-star-white">$49<span class="text-xs text-gray-500">/mo</span></span>
+        </div>
+        <div class="space-y-2 mb-5">
+          <p class="text-xs text-gray-400">Finance · Invoicing · CRM (1 user)</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Smart invoices</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L2: Email support 5h/mo</span></div>
+        </div>
+        <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.04);">
+          <span class="mono text-xs text-gray-600">[ click to select ]</span>
+        </div>
+      </div>
+      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Startup Suite','$99/mo',99)">
+        <div class="coord mb-3">PKG-002</div>
+        <div class="flex justify-between items-start mb-5">
+          <div><h4 class="text-star-white font-medium">Startup Suite</h4><p class="text-gray-500 text-xs mt-1">Early-stage teams up to 10</p></div>
+          <span class="mono text-xl text-star-white">$99<span class="text-xs text-gray-500">/mo</span></span>
+        </div>
+        <div class="space-y-2 mb-5">
+          <p class="text-xs text-gray-400">Finance · HR · CRM · Inventory</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Forecasting</span><span class="badge-ai">L1: Anomalies</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L2: Priority chat · 10h/mo</span></div>
+        </div>
+        <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.04);">
+          <span class="mono text-xs text-gray-600">[ click to select ]</span>
+        </div>
+      </div>
+      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Commerce Launch','$129/mo',129)">
+        <div class="coord mb-3">PKG-003</div>
+        <div class="flex justify-between items-start mb-5">
+          <div><h4 class="text-star-white font-medium">Commerce Launch</h4><p class="text-gray-500 text-xs mt-1">E-commerce & retail startups</p></div>
+          <span class="mono text-xl text-star-white">$129<span class="text-xs text-gray-500">/mo</span></span>
+        </div>
+        <div class="space-y-2 mb-5">
+          <p class="text-xs text-gray-400">Inventory · Orders · POS · Finance</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Demand prediction</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L2: Inventory ops 15h/mo</span></div>
+        </div>
+        <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.04);">
+          <span class="mono text-xs text-gray-600">[ click to select ]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tier 2 -->
+  <div class="reveal mb-10">
+    <div class="flex items-center gap-3 mb-5">
+      <div class="h-px flex-1" style="background:rgba(200,205,216,.05);"></div>
+      <p class="mono text-xs text-gray-500 tracking-widest">TIER-2 · GROWTH</p>
+      <div class="h-px flex-1" style="background:rgba(200,205,216,.05);"></div>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="plan-card featured p-6 cursor-pointer relative" onclick="togglePlan(this,'Business Pro','$249/mo',249)">
+        <div class="absolute -top-3 left-5"><span class="badge-pop">◈ MOST POPULAR</span></div>
+        <div class="coord mb-3 mt-2">PKG-004</div>
+        <div class="flex justify-between items-start mb-5">
+          <div><h4 class="text-star-white font-medium">Business Pro</h4><p class="text-gray-500 text-xs mt-1">Growing teams 10–50</p></div>
+          <span class="mono text-xl text-star-white">$249<span class="text-xs text-gray-500">/mo</span></span>
+        </div>
+        <div class="space-y-2 mb-5">
+          <p class="text-xs text-gray-400">Full ERP · HR · CRM · Projects · Finance</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: AI reports</span><span class="badge-ai">L1: Automation</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L2/L3: Analyst · 20h/mo</span></div>
+        </div>
+        <div class="pt-3" style="border-top:1px solid rgba(231,29,54,.08);">
+          <span class="mono text-xs" style="color:#E71D36;">[ click to select ]</span>
+        </div>
+      </div>
+      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Ops Central','$199/mo',199)">
+        <div class="coord mb-3">PKG-005</div>
+        <div class="flex justify-between items-start mb-5">
+          <div><h4 class="text-star-white font-medium">Ops Central</h4><p class="text-gray-500 text-xs mt-1">Operations-heavy businesses</p></div>
+          <span class="mono text-xl text-star-white">$199<span class="text-xs text-gray-500">/mo</span></span>
+        </div>
+        <div class="space-y-2 mb-5">
+          <p class="text-xs text-gray-400">Procurement · Logistics · Inventory · WMS</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Route optimization</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L2: Ops specialist 15h/mo</span></div>
+        </div>
+        <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.04);">
+          <span class="mono text-xs text-gray-600">[ click to select ]</span>
+        </div>
+      </div>
+      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'People First','$179/mo',179)">
+        <div class="coord mb-3">PKG-006</div>
+        <div class="flex justify-between items-start mb-5">
+          <div><h4 class="text-star-white font-medium">People First</h4><p class="text-gray-500 text-xs mt-1">HR & workforce-centric orgs</p></div>
+          <span class="mono text-xl text-star-white">$179<span class="text-xs text-gray-500">/mo</span></span>
+        </div>
+        <div class="space-y-2 mb-5">
+          <p class="text-xs text-gray-400">HR · Payroll · Attendance · Training</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Attrition risk</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L2: HR consultant 12h/mo</span></div>
+        </div>
+        <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.04);">
+          <span class="mono text-xs text-gray-600">[ click to select ]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tier 3 -->
+  <div class="reveal">
+    <div class="flex items-center gap-3 mb-5">
+      <div class="h-px flex-1" style="background:rgba(200,205,216,.05);"></div>
+      <p class="mono text-xs text-gray-500 tracking-widest">TIER-3 · ENTERPRISE</p>
+      <div class="h-px flex-1" style="background:rgba(200,205,216,.05);"></div>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Scale 360','$499/mo',499)">
+        <div class="coord mb-3">PKG-007</div>
+        <div class="flex justify-between items-start mb-5">
+          <div><h4 class="text-star-white font-medium">Scale 360</h4><p class="text-gray-500 text-xs mt-1">Multi-department 50–200 people</p></div>
+          <span class="mono text-xl text-star-white">$499<span class="text-xs text-gray-500">/mo</span></span>
+        </div>
+        <div class="space-y-2 mb-5">
+          <p class="text-xs text-gray-400">All modules · Multi-entity · Custom reporting</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Custom models</span><span class="badge-ai">L1: Scenario planning</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L3: Dedicated success manager</span></div>
+        </div>
+        <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.04);">
+          <span class="mono text-xs text-gray-600">[ click to select ]</span>
+        </div>
+      </div>
+      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Industry Vertical','$649/mo',649)">
+        <div class="coord mb-3">PKG-008</div>
+        <div class="flex justify-between items-start mb-5">
+          <div><h4 class="text-star-white font-medium">Industry Vertical</h4><p class="text-gray-500 text-xs mt-1">Sector-specific configuration</p></div>
+          <span class="mono text-xl text-star-white">$649<span class="text-xs text-gray-500">/mo</span></span>
+        </div>
+        <div class="space-y-2 mb-5">
+          <p class="text-xs text-gray-400">All + Retail / Health / Logistics vertical</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Compliance AI</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L3: Specialist team · SLA-backed</span></div>
+        </div>
+        <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.04);">
+          <span class="mono text-xs text-gray-600">[ click to select ]</span>
+        </div>
+      </div>
+      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Global Enterprise','$999/mo',999)">
+        <div class="coord mb-3">PKG-009</div>
+        <div class="flex justify-between items-start mb-5">
+          <div><h4 class="text-star-white font-medium">Global Enterprise</h4><p class="text-gray-500 text-xs mt-1">Multi-country, multi-currency</p></div>
+          <span class="mono text-xl text-star-white">$999<span class="text-xs text-gray-500">/mo</span></span>
+        </div>
+        <div class="space-y-2 mb-5">
+          <p class="text-xs text-gray-400">All modules + Global compliance pack</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: FX intelligence</span><span class="badge-ai">L1: Multi-region</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L3: 24/7 global ops team</span></div>
+        </div>
+        <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.04);">
+          <span class="mono text-xs text-gray-600">[ click to select ]</span>
+        </div>
+      </div>
+      <div class="plan-card featured p-6 cursor-pointer" onclick="togglePlan(this,'Nohtek Unlimited','$1,499/mo',1499)">
+        <div class="coord mb-3">PKG-010 · FLAGSHIP</div>
+        <div class="flex justify-between items-start mb-5">
+          <div><h4 class="text-star-white font-medium">Nohtek Unlimited</h4><p class="text-gray-500 text-xs mt-1">White-glove, fully managed ERP</p></div>
+          <span class="mono text-xl text-star-white">$1,499<span class="text-xs text-gray-500">/mo</span></span>
+        </div>
+        <div class="space-y-2 mb-5">
+          <p class="text-xs text-gray-400">Everything · Custom integrations · Full API</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Custom-trained AI</span><span class="badge-ai">L1: Real-time dashboards</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L3: Embedded team + CTO advisory</span></div>
+        </div>
+        <div class="pt-3" style="border-top:1px solid rgba(231,29,54,.08);">
+          <span class="mono text-xs" style="color:#E71D36;">[ click to select ]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- HARDWARE -->
+<section id="hardware" class="py-28" style="background:#07090E;">
+  <div class="nebula-a" style="width:450px;height:450px;top:0;right:5%;position:absolute;"></div>
+  <div class="max-w-6xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 reveal">
+      <p class="mono text-xs tracking-widest mb-4" style="color:#FF9F1C;">// MISSION EQUIPMENT</p>
+      <h2 class="text-star-white text-4xl font-medium mb-4">Hardware for the field</h2>
+      <p class="text-gray-500 text-sm max-w-lg mx-auto">Curated hardware packs — pre-configured, battle-tested, ready to deploy alongside your Nohtek plan.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="hw-card p-6 cursor-pointer" onclick="toggleHW(this,'Field Starter Kit','$890',890)">
+        <div class="mono text-xs mb-4" style="color:rgba(255,159,28,.45);">HW-001 · ONE-TIME</div>
+        <div class="w-10 h-10 mb-5 flex items-center justify-center" style="border:1px solid rgba(255,159,28,.2);background:rgba(255,159,28,.06);">
+          <svg width="20" height="20" fill="none" stroke="#FF9F1C" stroke-width="1.5" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18" stroke-linecap="round" stroke-width="2"/></svg>
+        </div>
+        <div class="flex justify-between items-start mb-3">
+          <h4 class="text-star-white font-medium">Field Starter Kit</h4>
+          <span class="mono text-lg" style="color:#FF9F1C;">$890</span>
+        </div>
+        <p class="text-gray-500 text-xs mb-4">Mobile sales reps and field agents</p>
+        <div class="mono text-xs text-gray-600 space-y-1">
+          <p>· 1× Tablet (10", ruggedized)</p>
+          <p>· 1× Bluetooth scanner</p>
+          <p>· 1× Mobile hotspot</p>
+        </div>
+        <div class="mt-5 pt-4" style="border-top:1px solid rgba(255,159,28,.07);">
+          <span class="mono text-xs" style="color:rgba(255,159,28,.35);">[ click to select ]</span>
+        </div>
+      </div>
+      <div class="hw-card p-6 cursor-pointer" onclick="toggleHW(this,'Office Command Pack','$2,200',2200)">
+        <div class="mono text-xs mb-4" style="color:rgba(255,159,28,.45);">HW-002 · ONE-TIME</div>
+        <div class="w-10 h-10 mb-5 flex items-center justify-center" style="border:1px solid rgba(255,159,28,.2);background:rgba(255,159,28,.06);">
+          <svg width="20" height="20" fill="none" stroke="#FF9F1C" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="flex justify-between items-start mb-3">
+          <h4 class="text-star-white font-medium">Office Command Pack</h4>
+          <span class="mono text-lg" style="color:#FF9F1C;">$2,200</span>
+        </div>
+        <p class="text-gray-500 text-xs mb-4">5-person office hub setup</p>
+        <div class="mono text-xs text-gray-600 space-y-1">
+          <p>· 5× Laptops (pre-configured)</p>
+          <p>· 1× NAS storage (2TB)</p>
+          <p>· Managed switch + router</p>
+        </div>
+        <div class="mt-5 pt-4" style="border-top:1px solid rgba(255,159,28,.07);">
+          <span class="mono text-xs" style="color:rgba(255,159,28,.35);">[ click to select ]</span>
+        </div>
+      </div>
+      <div class="hw-card p-6 cursor-pointer" style="border-color:rgba(255,159,28,.28);" onclick="toggleHW(this,'Warehouse Ops Bundle','$4,500',4500)">
+        <div class="mono text-xs mb-4" style="color:#FF9F1C;">HW-003 · RECOMMENDED · ONE-TIME</div>
+        <div class="w-10 h-10 mb-5 flex items-center justify-center" style="border:1px solid rgba(255,159,28,.32);background:rgba(255,159,28,.09);">
+          <svg width="20" height="20" fill="none" stroke="#FF9F1C" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="flex justify-between items-start mb-3">
+          <h4 class="text-star-white font-medium">Warehouse Ops Bundle</h4>
+          <span class="mono text-lg" style="color:#FF9F1C;">$4,500</span>
+        </div>
+        <p class="text-gray-500 text-xs mb-4">Full warehouse scanning & tracking</p>
+        <div class="mono text-xs text-gray-600 space-y-1">
+          <p>· 10× Industrial barcode scanners</p>
+          <p>· 2× Label printers</p>
+          <p>· Server rack + UPS</p>
+          <p>· Warehouse-grade WiFi APs</p>
+        </div>
+        <div class="mt-5 pt-4" style="border-top:1px solid rgba(255,159,28,.09);">
+          <span class="mono text-xs" style="color:rgba(255,159,28,.35);">[ click to select ]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADD-ON -->
+<section id="addons" class="py-20 max-w-6xl mx-auto px-6">
+  <div class="reveal addon-card p-8 md:p-10" id="addon-card-wrapper">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
+      <div class="flex-1">
+        <p class="mono text-xs tracking-widest mb-3" style="color:#E71D36;">// SUPPORT ADD-ON</p>
+        <h3 class="text-star-white text-2xl font-medium mb-3">Priority Human Support</h3>
+        <p class="text-gray-500 text-sm leading-relaxed max-w-md">Guaranteed 2-hour SLA, dedicated account manager, monthly strategy calls, and unlimited L3 task hours.</p>
+      </div>
+      <div class="flex flex-col items-start md:items-end gap-4">
+        <div class="flex items-center gap-4">
+          <div class="text-right">
+            <p class="mono text-2xl text-star-white">+$149<span class="text-xs text-gray-500">/mo</span></p>
+            <p class="mono text-xs text-gray-500">added to any plan</p>
+          </div>
+          <div class="toggle-track" id="addon-toggle" onclick="toggleAddon()">
+            <div class="toggle-thumb"></div>
+          </div>
+        </div>
+        <div id="addon-status" class="mono text-xs text-gray-600">STATUS: INACTIVE</div>
+      </div>
+    </div>
+    <div id="addon-details" class="hidden mt-8 pt-8 grid sm:grid-cols-3 gap-6" style="border-top:1px solid rgba(255,255,255,.04);">
+      <div><p class="mono text-3xl mb-2" style="color:#E71D36;">2h</p><p class="mono text-xs text-gray-500">SLA RESPONSE TIME</p></div>
+      <div><p class="mono text-3xl mb-2" style="color:#E71D36;">∞</p><p class="mono text-xs text-gray-500">L3 TASK HOURS</p></div>
+      <div><p class="mono text-3xl mb-2" style="color:#E71D36;">1:1</p><p class="mono text-xs text-gray-500">DEDICATED MANAGER</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-16 mt-4" style="background:#050608;border-top:1px solid rgba(231,29,54,.1);">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
+      <div class="max-w-xs">
+        <div class="flex items-center gap-3 mb-5">
+          <svg width="28" height="22" viewBox="0 0 48 40" fill="none">
+            <polygon points="12,40 30,0 48,40 38,40 30,20 22,40" fill="#E71D36"/>
+          </svg>
+          <span class="text-star-white mono tracking-[.2em]">NOHTEK</span>
+        </div>
+        <p class="text-gray-600 text-xs leading-relaxed mb-5">Intelligence at every layer. ERP engineered for the businesses that will define the next decade.</p>
+        <div class="flex items-center gap-2">
+          <div class="status-dot"></div>
+          <span class="mono text-xs text-gray-600">ALL SYSTEMS NOMINAL</span>
+        </div>
+      </div>
+      <div class="grid grid-cols-3 gap-10 text-xs">
+        <div>
+          <p class="mono text-gray-600 tracking-widest mb-4">PRODUCT</p>
+          <div class="space-y-3">
+            <a href="#pillars" class="block text-gray-500 hover:text-gray-300 transition-colors">Architecture</a>
+            <a href="#pricing" class="block text-gray-500 hover:text-gray-300 transition-colors">Pricing</a>
+            <a href="#hardware" class="block text-gray-500 hover:text-gray-300 transition-colors">Hardware</a>
+          </div>
+        </div>
+        <div>
+          <p class="mono text-gray-600 tracking-widest mb-4">COMPANY</p>
+          <div class="space-y-3">
+            <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">About</a>
+            <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">Careers</a>
+            <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">Blog</a>
+          </div>
+        </div>
+        <div>
+          <p class="mono text-gray-600 tracking-widest mb-4">CONTACT</p>
+          <div class="space-y-3">
+            <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">Sales</a>
+            <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">Support</a>
+            <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">Partners</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 pt-8" style="border-top:1px solid rgba(255,255,255,.03);">
+      <p class="mono text-xs text-gray-700">© 2025 NOHTEK ERP SOLUTION · ALL RIGHTS RESERVED</p>
+      <div class="flex gap-6 mono text-xs text-gray-700">
+        <a href="#" class="hover:text-gray-500 transition-colors">Privacy</a>
+        <a href="#" class="hover:text-gray-500 transition-colors">Terms</a>
+        <a href="#" class="hover:text-gray-500 transition-colors">Security</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Starfield
+(function(){
+  const canvas=document.getElementById('starfield');
+  const ctx=canvas.getContext('2d');
+  let stars=[];
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  function init(){
+    stars=[];
+    for(let i=0;i<240;i++){
+      stars.push({
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        r:Math.random()*1.3,
+        o:Math.random()*.65+.1,
+        tw:Math.random()*.018,
+        ph:Math.random()*Math.PI*2,
+        c:Math.random()>.92?'#FFB84D':Math.random()>.85?'#FFAAAA':'#E8EAF0'
+      });
+    }
+  }
+  let f=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    f++;
+    stars.forEach(s=>{
+      const fl=s.o+Math.sin(f*s.tw+s.ph)*.18;
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=s.c;
+      ctx.globalAlpha=Math.max(0,fl);
+      ctx.fill();
+    });
+    ctx.globalAlpha=1;
+    requestAnimationFrame(draw);
+  }
+  resize();init();draw();
+  window.addEventListener('resize',()=>{resize();init();});
+})();
+
+// Shooting stars
+(function(){
+  function shoot(){
+    const el=document.createElement('div');
+    el.className='shoot';
+    el.style.cssText=`top:${Math.random()*45}vh;left:${Math.random()*70}vw;animation-duration:${1.4+Math.random()*.8}s;transform:rotate(${18+Math.random()*18}deg);width:${50+Math.random()*90}px;`;
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),3000);
+  }
+  setInterval(shoot,5000+Math.random()*7000);
+  setTimeout(shoot,2000);
+})();
+
+// Cart
+const cart={plans:{},hw:{},addon:false};
+
+function updateCart(){
+  const pe=document.getElementById('cart-plans');
+  const he=document.getElementById('cart-hw');
+  const ae=document.getElementById('cart-addons');
+  let mo=0,ot=0,ct=0;
+  const pk=Object.keys(cart.plans);
+  document.getElementById('cart-plans-empty').style.display=pk.length?'none':'block';
+  pe.querySelectorAll('.cip').forEach(e=>e.remove());
+  pk.forEach(k=>{const i=cart.plans[k];mo+=i.price;ct++;const r=document.createElement('div');r.className='cip cart-row pb-2';r.innerHTML=`<div class="flex justify-between"><span class="text-star-white text-xs">${i.name}</span><span class="mono text-xs text-gray-500">${i.label}</span></div>`;pe.appendChild(r);});
+  const hk=Object.keys(cart.hw);
+  document.getElementById('cart-hw-empty').style.display=hk.length?'none':'block';
+  he.querySelectorAll('.cih').forEach(e=>e.remove());
+  hk.forEach(k=>{const i=cart.hw[k];ot+=i.price;ct++;const r=document.createElement('div');r.className='cih cart-row pb-2';r.innerHTML=`<div class="flex justify-between"><span class="text-star-white text-xs">${i.name}</span><span class="mono text-xs" style="color:#FF9F1C;">${i.label}</span></div>`;he.appendChild(r);});
+  document.getElementById('cart-addons-empty').style.display=cart.addon?'none':'block';
+  ae.querySelectorAll('.cia').forEach(e=>e.remove());
+  if(cart.addon){mo+=149;ct++;const r=document.createElement('div');r.className='cia cart-row pb-2';r.innerHTML=`<div class="flex justify-between"><span class="text-star-white text-xs">Priority Support</span><span class="mono text-xs text-gray-500">+$149/mo</span></div>`;ae.appendChild(r);}
+  document.getElementById('total-monthly').textContent='$'+mo.toLocaleString();
+  document.getElementById('total-onetime').textContent='$'+ot.toLocaleString();
+  document.getElementById('cart-count').textContent=ct;
+}
+
+function togglePlan(el,name,label,price){
+  if(cart.plans[name]){delete cart.plans[name];el.classList.remove('selected');}
+  else{cart.plans[name]={name,label,price};el.classList.add('selected');}
+  updateCart();
+}
+function toggleHW(el,name,label,price){
+  if(cart.hw[name]){delete cart.hw[name];el.classList.remove('selected');}
+  else{cart.hw[name]={name,label,price};el.classList.add('selected');}
+  updateCart();
+}
+function toggleAddon(){
+  cart.addon=!cart.addon;
+  document.getElementById('addon-toggle').classList.toggle('on',cart.addon);
+  document.getElementById('addon-status').textContent=cart.addon?'STATUS: ACTIVE · +$149/mo':'STATUS: INACTIVE';
+  document.getElementById('addon-status').style.color=cart.addon?'#E71D36':'';
+  document.getElementById('addon-details').classList.toggle('hidden',!cart.addon);
+  document.getElementById('addon-card-wrapper').classList.toggle('active',cart.addon);
+  updateCart();
+}
+function toggleCart(){document.getElementById('cart-panel').classList.toggle('open');}
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
