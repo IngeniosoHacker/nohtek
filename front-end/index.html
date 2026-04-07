@@ -1,5 +1,5 @@
 <!doctype html>
-<!--<html lang="en">
+<!--<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -11,11 +11,11 @@
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>-->
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Nohtek — ERP at the Speed of Light</title>
+<title>Nohtek — ERP a la Velocidad de la Luz</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
@@ -137,7 +137,7 @@ tailwind.config = {
     <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
     <path d="M16 10a4 4 0 01-8 0"/>
   </svg>
-  <span class="mono text-xs">MISSION BAY</span>
+  <span class="mono text-xs">MISIÓN</span>
   <span id="cart-count" class="bg-cinnabar text-white text-xs rounded-sm w-5 h-5 flex items-center justify-center mono">0</span>
 </button>
 
@@ -147,9 +147,9 @@ tailwind.config = {
     <div>
       <div class="flex items-center gap-2 mb-1">
         <div class="status-dot"></div>
-        <span class="mono text-xs tracking-widest" style="color:#E71D36;">MISSION CONTROL</span>
+        <span class="mono text-xs tracking-widest" style="color:#E71D36;">CONTROL DE MISIÓN</span>
       </div>
-      <h3 class="text-star-white text-sm font-medium">Your Configuration</h3>
+      <h3 class="text-star-white text-sm font-medium">Tu Configuración</h3>
     </div>
     <button onclick="toggleCart()" class="text-gray-600 hover:text-gray-300 transition-colors">
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -157,22 +157,22 @@ tailwind.config = {
   </div>
   <div class="p-5">
     <p class="mono text-xs text-gray-600 tracking-widest mb-3">// SOFTWARE</p>
-    <div id="cart-plans" class="space-y-2 mb-5"><p class="text-gray-600 text-xs" id="cart-plans-empty">— none selected</p></div>
+    <div id="cart-plans" class="space-y-2 mb-5"><p class="text-gray-600 text-xs" id="cart-plans-empty">— ninguno seleccionado</p></div>
     <p class="mono text-xs text-gray-600 tracking-widest mb-3">// HARDWARE</p>
-    <div id="cart-hw" class="space-y-2 mb-5"><p class="text-gray-600 text-xs" id="cart-hw-empty">— none selected</p></div>
-    <p class="mono text-xs text-gray-600 tracking-widest mb-3">// ADD-ONS</p>
-    <div id="cart-addons" class="space-y-2 mb-6"><p class="text-gray-600 text-xs" id="cart-addons-empty">— none selected</p></div>
+    <div id="cart-hw" class="space-y-2 mb-5"><p class="text-gray-600 text-xs" id="cart-hw-empty">— ninguno seleccionado</p></div>
+    <p class="mono text-xs text-gray-600 tracking-widest mb-3">// ADICIONALES</p>
+    <div id="cart-addons" class="space-y-2 mb-6"><p class="text-gray-600 text-xs" id="cart-addons-empty">— ninguno seleccionado</p></div>
     <div class="pt-5 space-y-3" style="border-top:1px solid rgba(255,255,255,.04);">
       <div class="flex justify-between">
-        <span class="mono text-xs text-gray-500">MONTHLY BURN</span>
-        <span class="text-star-white font-medium mono" id="total-monthly">$0</span>
+        <span class="mono text-xs text-gray-500">COSTO MENSUAL</span>
+        <span class="text-star-white font-medium mono" id="total-monthly">Q0</span>
       </div>
       <div class="flex justify-between">
-        <span class="mono text-xs text-gray-500">ONE-TIME COST</span>
-        <span class="mono font-medium" style="color:#FF9F1C;" id="total-onetime">$0</span>
+        <span class="mono text-xs text-gray-500">COSTO ÚNICO</span>
+        <span class="mono font-medium" style="color:#FF9F1C;" id="total-onetime">Q0</span>
       </div>
     </div>
-    <button class="cta-btn w-full mt-6 py-3 text-sm font-medium">Request Launch →</button>
+    <button class="cta-btn w-full mt-6 py-3 text-sm font-medium">Solicitar Lanzamiento →</button>
   </div>
 </div>
 
@@ -185,8 +185,8 @@ tailwind.config = {
   <div class="orbit-ring" style="width:460px;height:460px;top:50%;left:68%;margin:-230px 0 0 -230px;animation-duration:32s;animation-direction:reverse;opacity:.4;"></div>
   <div class="orbit-ring" style="width:640px;height:640px;top:50%;left:68%;margin:-320px 0 0 -320px;animation-duration:55s;opacity:.2;"></div>
 
-  <div class="absolute top-8 left-8 coord hidden md:block">LAT 34.052°N · LON 118.243°W · ALT 420km</div>
-  <div class="absolute top-8 left-1/2 -translate-x-1/2 coord hidden md:block">NOHTEK ORBITAL PLATFORM v2.4.1</div>
+  <div class="absolute top-8 left-8 coord hidden md:block">LAT 14.634°N · LON 90.506°W · ALT 420km</div>
+  <div class="absolute top-8 left-1/2 -translate-x-1/2 coord hidden md:block">PLATAFORMA ORBITAL NOHTEK v2.4.1</div>
 
   <div class="relative z-10 max-w-6xl mx-auto px-6 py-36 w-full">
     <div class="max-w-3xl">
@@ -197,40 +197,40 @@ tailwind.config = {
         </svg>
         <div>
           <span class="text-star-white mono text-xl tracking-[.2em]">NOHTEK</span>
-          <span class="block mono text-xs tracking-widest" style="color:rgba(231,29,54,.8);">ERP SOLUTION · EST. 2024</span>
+          <span class="block mono text-xs tracking-widest" style="color:rgba(231,29,54,.8);">SOLUCIÓN ERP · EST. 2024</span>
         </div>
       </div>
 
       <div class="flex items-center gap-2 mb-5">
         <div class="status-dot"></div>
-        <span class="mono text-xs tracking-widest" style="color:#E71D36;">SYSTEM ONLINE · ALL MODULES OPERATIONAL</span>
+        <span class="mono text-xs tracking-widest" style="color:#E71D36;">SISTEMA EN LÍNEA · TODOS LOS MÓDULOS OPERATIVOS</span>
       </div>
 
       <h1 class="text-star-white font-medium leading-none mb-6 tracking-tight" style="font-size:clamp(2.8rem,7vw,5.5rem);">
-        Intelligence<br/>at the<br/><span style="color:#E71D36;">speed of light.</span>
+        Inteligencia<br/>a la<br/><span style="color:#E71D36;">velocidad de la luz.</span>
       </h1>
 
       <p class="text-gray-400 text-lg leading-relaxed mb-10 max-w-xl">
-        Enterprise ERP fused with AI intelligence and a human execution network. Three layers, one system — engineered for orbit.
+        ERP empresarial fusionado con inteligencia artificial y una red de ejecución humana. Tres capas, un solo sistema — diseñado para orbitar.
       </p>
 
       <div class="flex flex-wrap gap-4">
-        <a href="#pricing" class="cta-btn px-8 py-4 text-base font-medium">Explore Plans →</a>
-        <a href="#pillars" class="outline-btn px-8 py-4 text-base font-medium">Mission briefing</a>
+        <a href="#pricing" class="cta-btn px-8 py-4 text-base font-medium">Explorar Planes →</a>
+        <a href="#pillars" class="outline-btn px-8 py-4 text-base font-medium">Briefing de misión</a>
       </div>
 
       <div class="flex flex-wrap gap-8 mt-14 pt-8" style="border-top:1px solid rgba(255,255,255,.05);">
         <div>
           <p class="mono text-2xl text-star-white">99.9<span style="color:#E71D36;">%</span></p>
-          <p class="text-xs text-gray-500 mt-1">Uptime SLA</p>
+          <p class="text-xs text-gray-500 mt-1">SLA de disponibilidad</p>
         </div>
         <div class="pl-8" style="border-left:1px solid rgba(255,255,255,.05);">
           <p class="mono text-2xl text-star-white">3<span style="color:#E71D36;">×</span></p>
-          <p class="text-xs text-gray-500 mt-1">Faster decisions</p>
+          <p class="text-xs text-gray-500 mt-1">Decisiones más rápidas</p>
         </div>
         <div class="pl-8" style="border-left:1px solid rgba(255,255,255,.05);">
           <p class="mono text-2xl text-star-white">L1<span style="color:#FF9F1C;">+</span>L3</p>
-          <p class="text-xs text-gray-500 mt-1">AI + Human layers</p>
+          <p class="text-xs text-gray-500 mt-1">Capas de IA + Humano</p>
         </div>
       </div>
     </div>
@@ -243,7 +243,7 @@ tailwind.config = {
 <div class="py-3 overflow-hidden" style="background:rgba(231,29,54,.07);border-top:1px solid rgba(231,29,54,.14);border-bottom:1px solid rgba(231,29,54,.14);">
   <div class="ticker-wrap">
     <div class="ticker mono text-xs tracking-widest" style="color:#E71D36;">
-      &nbsp;&nbsp;· AI CORE ACTIVE &nbsp;&nbsp;· ERP MODULES ONLINE &nbsp;&nbsp;· HUMAN NETWORK L2/L3 STANDBY &nbsp;&nbsp;· REAL-TIME ANALYTICS &nbsp;&nbsp;· MISSION CONTROL READY &nbsp;&nbsp;· SECURE ENCRYPTED CHANNEL &nbsp;&nbsp;· 420+ INTEGRATIONS &nbsp;&nbsp;· DEPLOY IN 48H &nbsp;&nbsp;· AI CORE ACTIVE &nbsp;&nbsp;· ERP MODULES ONLINE &nbsp;&nbsp;· HUMAN NETWORK L2/L3 STANDBY &nbsp;&nbsp;· REAL-TIME ANALYTICS &nbsp;&nbsp;· MISSION CONTROL READY &nbsp;&nbsp;· SECURE ENCRYPTED CHANNEL &nbsp;&nbsp;· 420+ INTEGRATIONS &nbsp;&nbsp;· DEPLOY IN 48H
+      &nbsp;&nbsp;· IA ACTIVA &nbsp;&nbsp;· MÓDULOS ERP EN LÍNEA &nbsp;&nbsp;· RED HUMANA L2/L3 EN ESPERA &nbsp;&nbsp;· ANALÍTICA EN TIEMPO REAL &nbsp;&nbsp;· CONTROL DE MISIÓN LISTO &nbsp;&nbsp;· CANAL CIFRADO SEGURO &nbsp;&nbsp;· 420+ INTEGRACIONES &nbsp;&nbsp;· DESPLIEGUE EN 48H &nbsp;&nbsp;· IA ACTIVA &nbsp;&nbsp;· MÓDULOS ERP EN LÍNEA &nbsp;&nbsp;· RED HUMANA L2/L3 EN ESPERA &nbsp;&nbsp;· ANALÍTICA EN TIEMPO REAL &nbsp;&nbsp;· CONTROL DE MISIÓN LISTO &nbsp;&nbsp;· CANAL CIFRADO SEGURO &nbsp;&nbsp;· 420+ INTEGRACIONES &nbsp;&nbsp;· DESPLIEGUE EN 48H
     </div>
   </div>
 </div>
@@ -251,9 +251,9 @@ tailwind.config = {
 <!-- PILLARS -->
 <section id="pillars" class="py-28 max-w-6xl mx-auto px-6">
   <div class="text-center mb-16 reveal">
-    <p class="mono text-xs tracking-widest mb-4" style="color:#E71D36;">// ARCHITECTURE</p>
-    <h2 class="text-star-white text-4xl font-medium mb-4">Three layers. One system.</h2>
-    <p class="text-gray-500 text-sm max-w-lg mx-auto">From the intelligence core to the human network — every layer amplifies the one above it.</p>
+    <p class="mono text-xs tracking-widest mb-4" style="color:#E71D36;">// ARQUITECTURA</p>
+    <h2 class="text-star-white text-4xl font-medium mb-4">Tres capas. Un solo sistema.</h2>
+    <p class="text-gray-500 text-sm max-w-lg mx-auto">Desde el núcleo de inteligencia hasta la red humana — cada capa amplifica la que está encima.</p>
   </div>
   <div class="grid md:grid-cols-3 gap-6">
     <div class="pillar-card p-8 reveal bracket">
@@ -262,9 +262,9 @@ tailwind.config = {
           <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
         </svg>
       </div>
-      <div class="badge-ai mb-4 inline-block">L1 — AI CORE</div>
-      <h3 class="text-star-white text-xl font-medium mb-3">AI Intelligence</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">Predictive analytics, automated workflows, intelligent decision support — running at computation speed, continuously.</p>
+      <div class="badge-ai mb-4 inline-block">L1 — NÚCLEO IA</div>
+      <h3 class="text-star-white text-xl font-medium mb-3">Inteligencia Artificial</h3>
+      <p class="text-gray-500 text-sm leading-relaxed">Analítica predictiva, flujos de trabajo automatizados, soporte inteligente de decisiones — funcionando a velocidad de cómputo, continuamente.</p>
     </div>
     <div class="pillar-card p-8 reveal bracket" style="transition-delay:.1s;">
       <div class="w-10 h-10 mb-6 flex items-center justify-center" style="border:1px solid rgba(200,205,216,.14);background:rgba(200,205,216,.04);">
@@ -272,9 +272,9 @@ tailwind.config = {
           <rect x="2" y="3" width="20" height="14" rx="1"/><path d="M8 21h8M12 17v4M7 8h10M7 12h6"/>
         </svg>
       </div>
-      <div class="mono text-xs text-gray-400 border px-2 py-0.5 inline-block mb-4" style="border-color:rgba(200,205,216,.14);">CORE SYSTEM</div>
-      <h3 class="text-star-white text-xl font-medium mb-3">ERP Modules</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">Finance, inventory, HR, CRM, procurement and more — modular by design, deeply integrated by default.</p>
+      <div class="mono text-xs text-gray-400 border px-2 py-0.5 inline-block mb-4" style="border-color:rgba(200,205,216,.14);">SISTEMA CENTRAL</div>
+      <h3 class="text-star-white text-xl font-medium mb-3">Módulos ERP</h3>
+      <p class="text-gray-500 text-sm leading-relaxed">Finanzas, inventario, RRHH, CRM, compras y más — modular por diseño, profundamente integrado por defecto.</p>
     </div>
     <div class="pillar-card p-8 reveal bracket" style="transition-delay:.2s;">
       <div class="w-10 h-10 mb-6 flex items-center justify-center" style="border:1px solid rgba(255,159,28,.28);background:rgba(255,159,28,.07);">
@@ -283,9 +283,9 @@ tailwind.config = {
           <path d="M3 21v-2a6 6 0 0112 0v2"/><path d="M18 9a3 3 0 010 6"/><path d="M21 21v-2a6 6 0 00-3-5.2"/>
         </svg>
       </div>
-      <div class="badge-human mb-4 inline-block">L2/L3 — HUMAN NETWORK</div>
-      <h3 class="text-star-white text-xl font-medium mb-3">Human Execution</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">Certified specialists on demand. When AI escalates, humans take over — seamlessly, at mission speed.</p>
+      <div class="badge-human mb-4 inline-block">L2/L3 — RED HUMANA</div>
+      <h3 class="text-star-white text-xl font-medium mb-3">Ejecución Humana</h3>
+      <p class="text-gray-500 text-sm leading-relaxed">Especialistas certificados bajo demanda. Cuando la IA escala, los humanos toman el control — sin interrupciones, a velocidad de misión.</p>
     </div>
   </div>
 </section>
@@ -295,62 +295,62 @@ tailwind.config = {
 <!-- PRICING -->
 <section id="pricing" class="py-28 max-w-6xl mx-auto px-6">
   <div class="text-center mb-6 reveal">
-    <p class="mono text-xs tracking-widest mb-4" style="color:#E71D36;">// MISSION PACKAGES</p>
-    <h2 class="text-star-white text-4xl font-medium mb-4">Choose your trajectory</h2>
-    <p class="text-gray-500 text-sm max-w-lg mx-auto">Every plan includes L1 AI as standard. Modular by design — deploy only what your mission requires.</p>
+    <p class="mono text-xs tracking-widest mb-4" style="color:#E71D36;">// PAQUETES DE MISIÓN</p>
+    <h2 class="text-star-white text-4xl font-medium mb-4">Elige tu trayectoria</h2>
+    <p class="text-gray-500 text-sm max-w-lg mx-auto">Cada plan incluye IA L1 como estándar. Modular por diseño — despliega solo lo que tu misión requiere.</p>
   </div>
 
   <!-- Tier 1 -->
   <div class="reveal mb-10">
     <div class="flex items-center gap-3 mb-5 mt-12">
       <div class="h-px flex-1" style="background:rgba(200,205,216,.05);"></div>
-      <p class="mono text-xs text-gray-500 tracking-widest">TIER-1 · STARTER</p>
+      <p class="mono text-xs text-gray-500 tracking-widest">NIVEL-1 · INICIAL</p>
       <div class="h-px flex-1" style="background:rgba(200,205,216,.05);"></div>
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Micro Core','$49/mo',49)">
+      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Micro Core','Q385/mes',385)">
         <div class="coord mb-3">PKG-001</div>
         <div class="flex justify-between items-start mb-5">
-          <div><h4 class="text-star-white font-medium">Micro Core</h4><p class="text-gray-500 text-xs mt-1">Solo operators & freelancers</p></div>
-          <span class="mono text-xl text-star-white">$49<span class="text-xs text-gray-500">/mo</span></span>
+          <div><h4 class="text-star-white font-medium">Micro Core</h4><p class="text-gray-500 text-xs mt-1">Operadores independientes y freelancers</p></div>
+          <span class="mono text-xl text-star-white">Q385<span class="text-xs text-gray-500">/mes</span></span>
         </div>
         <div class="space-y-2 mb-5">
-          <p class="text-xs text-gray-400">Finance · Invoicing · CRM (1 user)</p>
-          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Smart invoices</span></div>
-          <div class="flex flex-wrap gap-1"><span class="badge-human">L2: Email support 5h/mo</span></div>
+          <p class="text-xs text-gray-400">Finanzas · Facturación · CRM (1 usuario)</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Facturas inteligentes</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L2: Soporte por email 5h/mes</span></div>
         </div>
         <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.04);">
-          <span class="mono text-xs text-gray-600">[ click to select ]</span>
+          <span class="mono text-xs text-gray-600">[ clic para seleccionar ]</span>
         </div>
       </div>
-      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Startup Suite','$99/mo',99)">
+      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Startup Suite','Q775/mes',775)">
         <div class="coord mb-3">PKG-002</div>
         <div class="flex justify-between items-start mb-5">
-          <div><h4 class="text-star-white font-medium">Startup Suite</h4><p class="text-gray-500 text-xs mt-1">Early-stage teams up to 10</p></div>
-          <span class="mono text-xl text-star-white">$99<span class="text-xs text-gray-500">/mo</span></span>
+          <div><h4 class="text-star-white font-medium">Startup Suite</h4><p class="text-gray-500 text-xs mt-1">Equipos en etapa temprana hasta 10</p></div>
+          <span class="mono text-xl text-star-white">Q775<span class="text-xs text-gray-500">/mes</span></span>
         </div>
         <div class="space-y-2 mb-5">
-          <p class="text-xs text-gray-400">Finance · HR · CRM · Inventory</p>
-          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Forecasting</span><span class="badge-ai">L1: Anomalies</span></div>
-          <div class="flex flex-wrap gap-1"><span class="badge-human">L2: Priority chat · 10h/mo</span></div>
+          <p class="text-xs text-gray-400">Finanzas · RRHH · CRM · Inventario</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Pronósticos</span><span class="badge-ai">L1: Anomalías</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L2: Chat prioritario · 10h/mes</span></div>
         </div>
         <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.04);">
-          <span class="mono text-xs text-gray-600">[ click to select ]</span>
+          <span class="mono text-xs text-gray-600">[ clic para seleccionar ]</span>
         </div>
       </div>
-      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Commerce Launch','$129/mo',129)">
+      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Commerce Launch','Q1,010/mes',1010)">
         <div class="coord mb-3">PKG-003</div>
         <div class="flex justify-between items-start mb-5">
-          <div><h4 class="text-star-white font-medium">Commerce Launch</h4><p class="text-gray-500 text-xs mt-1">E-commerce & retail startups</p></div>
-          <span class="mono text-xl text-star-white">$129<span class="text-xs text-gray-500">/mo</span></span>
+          <div><h4 class="text-star-white font-medium">Commerce Launch</h4><p class="text-gray-500 text-xs mt-1">Startups de e-commerce y retail</p></div>
+          <span class="mono text-xl text-star-white">Q1,010<span class="text-xs text-gray-500">/mes</span></span>
         </div>
         <div class="space-y-2 mb-5">
-          <p class="text-xs text-gray-400">Inventory · Orders · POS · Finance</p>
-          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Demand prediction</span></div>
-          <div class="flex flex-wrap gap-1"><span class="badge-human">L2: Inventory ops 15h/mo</span></div>
+          <p class="text-xs text-gray-400">Inventario · Pedidos · POS · Finanzas</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Predicción de demanda</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L2: Ops de inventario 15h/mes</span></div>
         </div>
         <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.04);">
-          <span class="mono text-xs text-gray-600">[ click to select ]</span>
+          <span class="mono text-xs text-gray-600">[ clic para seleccionar ]</span>
         </div>
       </div>
     </div>
@@ -360,54 +360,54 @@ tailwind.config = {
   <div class="reveal mb-10">
     <div class="flex items-center gap-3 mb-5">
       <div class="h-px flex-1" style="background:rgba(200,205,216,.05);"></div>
-      <p class="mono text-xs text-gray-500 tracking-widest">TIER-2 · GROWTH</p>
+      <p class="mono text-xs text-gray-500 tracking-widest">NIVEL-2 · CRECIMIENTO</p>
       <div class="h-px flex-1" style="background:rgba(200,205,216,.05);"></div>
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="plan-card featured p-6 cursor-pointer relative" onclick="togglePlan(this,'Business Pro','$249/mo',249)">
-        <div class="absolute -top-3 left-5"><span class="badge-pop">◈ MOST POPULAR</span></div>
+      <div class="plan-card featured p-6 cursor-pointer relative" onclick="togglePlan(this,'Business Pro','Q1,955/mes',1955)">
+        <div class="absolute -top-3 left-5"><span class="badge-pop">◈ MÁS POPULAR</span></div>
         <div class="coord mb-3 mt-2">PKG-004</div>
         <div class="flex justify-between items-start mb-5">
-          <div><h4 class="text-star-white font-medium">Business Pro</h4><p class="text-gray-500 text-xs mt-1">Growing teams 10–50</p></div>
-          <span class="mono text-xl text-star-white">$249<span class="text-xs text-gray-500">/mo</span></span>
+          <div><h4 class="text-star-white font-medium">Business Pro</h4><p class="text-gray-500 text-xs mt-1">Equipos en crecimiento 10–50</p></div>
+          <span class="mono text-xl text-star-white">Q1,955<span class="text-xs text-gray-500">/mes</span></span>
         </div>
         <div class="space-y-2 mb-5">
-          <p class="text-xs text-gray-400">Full ERP · HR · CRM · Projects · Finance</p>
-          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: AI reports</span><span class="badge-ai">L1: Automation</span></div>
-          <div class="flex flex-wrap gap-1"><span class="badge-human">L2/L3: Analyst · 20h/mo</span></div>
+          <p class="text-xs text-gray-400">ERP completo · RRHH · CRM · Proyectos · Finanzas</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Reportes IA</span><span class="badge-ai">L1: Automatización</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L2/L3: Analista · 20h/mes</span></div>
         </div>
         <div class="pt-3" style="border-top:1px solid rgba(231,29,54,.08);">
-          <span class="mono text-xs" style="color:#E71D36;">[ click to select ]</span>
+          <span class="mono text-xs" style="color:#E71D36;">[ clic para seleccionar ]</span>
         </div>
       </div>
-      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Ops Central','$199/mo',199)">
+      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Ops Central','Q1,560/mes',1560)">
         <div class="coord mb-3">PKG-005</div>
         <div class="flex justify-between items-start mb-5">
-          <div><h4 class="text-star-white font-medium">Ops Central</h4><p class="text-gray-500 text-xs mt-1">Operations-heavy businesses</p></div>
-          <span class="mono text-xl text-star-white">$199<span class="text-xs text-gray-500">/mo</span></span>
+          <div><h4 class="text-star-white font-medium">Ops Central</h4><p class="text-gray-500 text-xs mt-1">Negocios con fuerte carga operativa</p></div>
+          <span class="mono text-xl text-star-white">Q1,560<span class="text-xs text-gray-500">/mes</span></span>
         </div>
         <div class="space-y-2 mb-5">
-          <p class="text-xs text-gray-400">Procurement · Logistics · Inventory · WMS</p>
-          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Route optimization</span></div>
-          <div class="flex flex-wrap gap-1"><span class="badge-human">L2: Ops specialist 15h/mo</span></div>
+          <p class="text-xs text-gray-400">Compras · Logística · Inventario · WMS</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Optimización de rutas</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L2: Especialista ops 15h/mes</span></div>
         </div>
         <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.04);">
-          <span class="mono text-xs text-gray-600">[ click to select ]</span>
+          <span class="mono text-xs text-gray-600">[ clic para seleccionar ]</span>
         </div>
       </div>
-      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'People First','$179/mo',179)">
+      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'People First','Q1,405/mes',1405)">
         <div class="coord mb-3">PKG-006</div>
         <div class="flex justify-between items-start mb-5">
-          <div><h4 class="text-star-white font-medium">People First</h4><p class="text-gray-500 text-xs mt-1">HR & workforce-centric orgs</p></div>
-          <span class="mono text-xl text-star-white">$179<span class="text-xs text-gray-500">/mo</span></span>
+          <div><h4 class="text-star-white font-medium">People First</h4><p class="text-gray-500 text-xs mt-1">Orgs centradas en RRHH y fuerza laboral</p></div>
+          <span class="mono text-xl text-star-white">Q1,405<span class="text-xs text-gray-500">/mes</span></span>
         </div>
         <div class="space-y-2 mb-5">
-          <p class="text-xs text-gray-400">HR · Payroll · Attendance · Training</p>
-          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Attrition risk</span></div>
-          <div class="flex flex-wrap gap-1"><span class="badge-human">L2: HR consultant 12h/mo</span></div>
+          <p class="text-xs text-gray-400">RRHH · Nómina · Asistencia · Capacitación</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Riesgo de rotación</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L2: Consultor RRHH 12h/mes</span></div>
         </div>
         <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.04);">
-          <span class="mono text-xs text-gray-600">[ click to select ]</span>
+          <span class="mono text-xs text-gray-600">[ clic para seleccionar ]</span>
         </div>
       </div>
     </div>
@@ -417,68 +417,68 @@ tailwind.config = {
   <div class="reveal">
     <div class="flex items-center gap-3 mb-5">
       <div class="h-px flex-1" style="background:rgba(200,205,216,.05);"></div>
-      <p class="mono text-xs text-gray-500 tracking-widest">TIER-3 · ENTERPRISE</p>
+      <p class="mono text-xs text-gray-500 tracking-widest">NIVEL-3 · EMPRESARIAL</p>
       <div class="h-px flex-1" style="background:rgba(200,205,216,.05);"></div>
     </div>
     <div class="grid sm:grid-cols-2 gap-4">
-      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Scale 360','$499/mo',499)">
+      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Scale 360','Q3,915/mes',3915)">
         <div class="coord mb-3">PKG-007</div>
         <div class="flex justify-between items-start mb-5">
-          <div><h4 class="text-star-white font-medium">Scale 360</h4><p class="text-gray-500 text-xs mt-1">Multi-department 50–200 people</p></div>
-          <span class="mono text-xl text-star-white">$499<span class="text-xs text-gray-500">/mo</span></span>
+          <div><h4 class="text-star-white font-medium">Scale 360</h4><p class="text-gray-500 text-xs mt-1">Multi-departamento 50–200 personas</p></div>
+          <span class="mono text-xl text-star-white">Q3,915<span class="text-xs text-gray-500">/mes</span></span>
         </div>
         <div class="space-y-2 mb-5">
-          <p class="text-xs text-gray-400">All modules · Multi-entity · Custom reporting</p>
-          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Custom models</span><span class="badge-ai">L1: Scenario planning</span></div>
-          <div class="flex flex-wrap gap-1"><span class="badge-human">L3: Dedicated success manager</span></div>
+          <p class="text-xs text-gray-400">Todos los módulos · Multi-entidad · Reportes personalizados</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Modelos personalizados</span><span class="badge-ai">L1: Planificación de escenarios</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L3: Gerente de éxito dedicado</span></div>
         </div>
         <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.04);">
-          <span class="mono text-xs text-gray-600">[ click to select ]</span>
+          <span class="mono text-xs text-gray-600">[ clic para seleccionar ]</span>
         </div>
       </div>
-      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Industry Vertical','$649/mo',649)">
+      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Industry Vertical','Q5,095/mes',5095)">
         <div class="coord mb-3">PKG-008</div>
         <div class="flex justify-between items-start mb-5">
-          <div><h4 class="text-star-white font-medium">Industry Vertical</h4><p class="text-gray-500 text-xs mt-1">Sector-specific configuration</p></div>
-          <span class="mono text-xl text-star-white">$649<span class="text-xs text-gray-500">/mo</span></span>
+          <div><h4 class="text-star-white font-medium">Industry Vertical</h4><p class="text-gray-500 text-xs mt-1">Configuración específica por sector</p></div>
+          <span class="mono text-xl text-star-white">Q5,095<span class="text-xs text-gray-500">/mes</span></span>
         </div>
         <div class="space-y-2 mb-5">
-          <p class="text-xs text-gray-400">All + Retail / Health / Logistics vertical</p>
-          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Compliance AI</span></div>
-          <div class="flex flex-wrap gap-1"><span class="badge-human">L3: Specialist team · SLA-backed</span></div>
+          <p class="text-xs text-gray-400">Todo + vertical Retail / Salud / Logística</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: IA de cumplimiento</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L3: Equipo especialista · con SLA</span></div>
         </div>
         <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.04);">
-          <span class="mono text-xs text-gray-600">[ click to select ]</span>
+          <span class="mono text-xs text-gray-600">[ clic para seleccionar ]</span>
         </div>
       </div>
-      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Global Enterprise','$999/mo',999)">
+      <div class="plan-card p-6 cursor-pointer" onclick="togglePlan(this,'Global Enterprise','Q7,840/mes',7840)">
         <div class="coord mb-3">PKG-009</div>
         <div class="flex justify-between items-start mb-5">
-          <div><h4 class="text-star-white font-medium">Global Enterprise</h4><p class="text-gray-500 text-xs mt-1">Multi-country, multi-currency</p></div>
-          <span class="mono text-xl text-star-white">$999<span class="text-xs text-gray-500">/mo</span></span>
+          <div><h4 class="text-star-white font-medium">Global Enterprise</h4><p class="text-gray-500 text-xs mt-1">Multi-país, multi-moneda</p></div>
+          <span class="mono text-xl text-star-white">Q7,840<span class="text-xs text-gray-500">/mes</span></span>
         </div>
         <div class="space-y-2 mb-5">
-          <p class="text-xs text-gray-400">All modules + Global compliance pack</p>
-          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: FX intelligence</span><span class="badge-ai">L1: Multi-region</span></div>
-          <div class="flex flex-wrap gap-1"><span class="badge-human">L3: 24/7 global ops team</span></div>
+          <p class="text-xs text-gray-400">Todos los módulos + paquete cumplimiento global</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Inteligencia FX</span><span class="badge-ai">L1: Multi-región</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L3: Equipo global 24/7</span></div>
         </div>
         <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.04);">
-          <span class="mono text-xs text-gray-600">[ click to select ]</span>
+          <span class="mono text-xs text-gray-600">[ clic para seleccionar ]</span>
         </div>
       </div>
-      <div class="plan-card featured p-6 cursor-pointer" onclick="togglePlan(this,'Nohtek Unlimited','$1,499/mo',1499)">
-        <div class="coord mb-3">PKG-010 · FLAGSHIP</div>
+      <div class="plan-card featured p-6 cursor-pointer" onclick="togglePlan(this,'Nohtek Unlimited','Q11,765/mes',11765)">
+        <div class="coord mb-3">PKG-010 · INSIGNIA</div>
         <div class="flex justify-between items-start mb-5">
-          <div><h4 class="text-star-white font-medium">Nohtek Unlimited</h4><p class="text-gray-500 text-xs mt-1">White-glove, fully managed ERP</p></div>
-          <span class="mono text-xl text-star-white">$1,499<span class="text-xs text-gray-500">/mo</span></span>
+          <div><h4 class="text-star-white font-medium">Nohtek Unlimited</h4><p class="text-gray-500 text-xs mt-1">ERP totalmente gestionado, servicio premium</p></div>
+          <span class="mono text-xl text-star-white">Q11,765<span class="text-xs text-gray-500">/mes</span></span>
         </div>
         <div class="space-y-2 mb-5">
-          <p class="text-xs text-gray-400">Everything · Custom integrations · Full API</p>
-          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: Custom-trained AI</span><span class="badge-ai">L1: Real-time dashboards</span></div>
-          <div class="flex flex-wrap gap-1"><span class="badge-human">L3: Embedded team + CTO advisory</span></div>
+          <p class="text-xs text-gray-400">Todo · Integraciones personalizadas · API completa</p>
+          <div class="flex flex-wrap gap-1 mt-2"><span class="badge-ai">L1: IA entrenada personalizada</span><span class="badge-ai">L1: Dashboards en tiempo real</span></div>
+          <div class="flex flex-wrap gap-1"><span class="badge-human">L3: Equipo integrado + asesoría CTO</span></div>
         </div>
         <div class="pt-3" style="border-top:1px solid rgba(231,29,54,.08);">
-          <span class="mono text-xs" style="color:#E71D36;">[ click to select ]</span>
+          <span class="mono text-xs" style="color:#E71D36;">[ clic para seleccionar ]</span>
         </div>
       </div>
     </div>
@@ -492,67 +492,67 @@ tailwind.config = {
   <div class="nebula-a" style="width:450px;height:450px;top:0;right:5%;position:absolute;"></div>
   <div class="max-w-6xl mx-auto px-6 relative z-10">
     <div class="text-center mb-16 reveal">
-      <p class="mono text-xs tracking-widest mb-4" style="color:#FF9F1C;">// MISSION EQUIPMENT</p>
-      <h2 class="text-star-white text-4xl font-medium mb-4">Hardware for the field</h2>
-      <p class="text-gray-500 text-sm max-w-lg mx-auto">Curated hardware packs — pre-configured, battle-tested, ready to deploy alongside your Nohtek plan.</p>
+      <p class="mono text-xs tracking-widest mb-4" style="color:#FF9F1C;">// EQUIPO DE MISIÓN</p>
+      <h2 class="text-star-white text-4xl font-medium mb-4">Hardware para el campo</h2>
+      <p class="text-gray-500 text-sm max-w-lg mx-auto">Paquetes de hardware seleccionados — preconfigurados, probados en batalla, listos para desplegar junto con tu plan Nohtek.</p>
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      <div class="hw-card p-6 cursor-pointer" onclick="toggleHW(this,'Field Starter Kit','$890',890)">
-        <div class="mono text-xs mb-4" style="color:rgba(255,159,28,.45);">HW-001 · ONE-TIME</div>
+      <div class="hw-card p-6 cursor-pointer" onclick="toggleHW(this,'Field Starter Kit','Q6,985',6985)">
+        <div class="mono text-xs mb-4" style="color:rgba(255,159,28,.45);">HW-001 · PAGO ÚNICO</div>
         <div class="w-10 h-10 mb-5 flex items-center justify-center" style="border:1px solid rgba(255,159,28,.2);background:rgba(255,159,28,.06);">
           <svg width="20" height="20" fill="none" stroke="#FF9F1C" stroke-width="1.5" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18" stroke-linecap="round" stroke-width="2"/></svg>
         </div>
         <div class="flex justify-between items-start mb-3">
           <h4 class="text-star-white font-medium">Field Starter Kit</h4>
-          <span class="mono text-lg" style="color:#FF9F1C;">$890</span>
+          <span class="mono text-lg" style="color:#FF9F1C;">Q6,985</span>
         </div>
-        <p class="text-gray-500 text-xs mb-4">Mobile sales reps and field agents</p>
+        <p class="text-gray-500 text-xs mb-4">Vendedores móviles y agentes de campo</p>
         <div class="mono text-xs text-gray-600 space-y-1">
-          <p>· 1× Tablet (10", ruggedized)</p>
-          <p>· 1× Bluetooth scanner</p>
-          <p>· 1× Mobile hotspot</p>
+          <p>· 1× Tablet (10", reforzada)</p>
+          <p>· 1× Escáner Bluetooth</p>
+          <p>· 1× Hotspot móvil</p>
         </div>
         <div class="mt-5 pt-4" style="border-top:1px solid rgba(255,159,28,.07);">
-          <span class="mono text-xs" style="color:rgba(255,159,28,.35);">[ click to select ]</span>
+          <span class="mono text-xs" style="color:rgba(255,159,28,.35);">[ clic para seleccionar ]</span>
         </div>
       </div>
-      <div class="hw-card p-6 cursor-pointer" onclick="toggleHW(this,'Office Command Pack','$2,200',2200)">
-        <div class="mono text-xs mb-4" style="color:rgba(255,159,28,.45);">HW-002 · ONE-TIME</div>
+      <div class="hw-card p-6 cursor-pointer" onclick="toggleHW(this,'Office Command Pack','Q17,270',17270)">
+        <div class="mono text-xs mb-4" style="color:rgba(255,159,28,.45);">HW-002 · PAGO ÚNICO</div>
         <div class="w-10 h-10 mb-5 flex items-center justify-center" style="border:1px solid rgba(255,159,28,.2);background:rgba(255,159,28,.06);">
           <svg width="20" height="20" fill="none" stroke="#FF9F1C" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         </div>
         <div class="flex justify-between items-start mb-3">
           <h4 class="text-star-white font-medium">Office Command Pack</h4>
-          <span class="mono text-lg" style="color:#FF9F1C;">$2,200</span>
+          <span class="mono text-lg" style="color:#FF9F1C;">Q17,270</span>
         </div>
-        <p class="text-gray-500 text-xs mb-4">5-person office hub setup</p>
+        <p class="text-gray-500 text-xs mb-4">Configuración de oficina para 5 personas</p>
         <div class="mono text-xs text-gray-600 space-y-1">
-          <p>· 5× Laptops (pre-configured)</p>
-          <p>· 1× NAS storage (2TB)</p>
-          <p>· Managed switch + router</p>
+          <p>· 5× Laptops (preconfiguradas)</p>
+          <p>· 1× Almacenamiento NAS (2TB)</p>
+          <p>· Switch gestionado + router</p>
         </div>
         <div class="mt-5 pt-4" style="border-top:1px solid rgba(255,159,28,.07);">
-          <span class="mono text-xs" style="color:rgba(255,159,28,.35);">[ click to select ]</span>
+          <span class="mono text-xs" style="color:rgba(255,159,28,.35);">[ clic para seleccionar ]</span>
         </div>
       </div>
-      <div class="hw-card p-6 cursor-pointer" style="border-color:rgba(255,159,28,.28);" onclick="toggleHW(this,'Warehouse Ops Bundle','$4,500',4500)">
-        <div class="mono text-xs mb-4" style="color:#FF9F1C;">HW-003 · RECOMMENDED · ONE-TIME</div>
+      <div class="hw-card p-6 cursor-pointer" style="border-color:rgba(255,159,28,.28);" onclick="toggleHW(this,'Warehouse Ops Bundle','Q35,325',35325)">
+        <div class="mono text-xs mb-4" style="color:#FF9F1C;">HW-003 · RECOMENDADO · PAGO ÚNICO</div>
         <div class="w-10 h-10 mb-5 flex items-center justify-center" style="border:1px solid rgba(255,159,28,.32);background:rgba(255,159,28,.09);">
           <svg width="20" height="20" fill="none" stroke="#FF9F1C" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
         <div class="flex justify-between items-start mb-3">
           <h4 class="text-star-white font-medium">Warehouse Ops Bundle</h4>
-          <span class="mono text-lg" style="color:#FF9F1C;">$4,500</span>
+          <span class="mono text-lg" style="color:#FF9F1C;">Q35,325</span>
         </div>
-        <p class="text-gray-500 text-xs mb-4">Full warehouse scanning & tracking</p>
+        <p class="text-gray-500 text-xs mb-4">Escaneo y seguimiento completo de almacén</p>
         <div class="mono text-xs text-gray-600 space-y-1">
-          <p>· 10× Industrial barcode scanners</p>
-          <p>· 2× Label printers</p>
-          <p>· Server rack + UPS</p>
-          <p>· Warehouse-grade WiFi APs</p>
+          <p>· 10× Escáneres de código de barra industriales</p>
+          <p>· 2× Impresoras de etiquetas</p>
+          <p>· Rack de servidor + UPS</p>
+          <p>· APs WiFi para almacén</p>
         </div>
         <div class="mt-5 pt-4" style="border-top:1px solid rgba(255,159,28,.09);">
-          <span class="mono text-xs" style="color:rgba(255,159,28,.35);">[ click to select ]</span>
+          <span class="mono text-xs" style="color:rgba(255,159,28,.35);">[ clic para seleccionar ]</span>
         </div>
       </div>
     </div>
@@ -564,27 +564,27 @@ tailwind.config = {
   <div class="reveal addon-card p-8 md:p-10" id="addon-card-wrapper">
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
       <div class="flex-1">
-        <p class="mono text-xs tracking-widest mb-3" style="color:#E71D36;">// SUPPORT ADD-ON</p>
-        <h3 class="text-star-white text-2xl font-medium mb-3">Priority Human Support</h3>
-        <p class="text-gray-500 text-sm leading-relaxed max-w-md">Guaranteed 2-hour SLA, dedicated account manager, monthly strategy calls, and unlimited L3 task hours.</p>
+        <p class="mono text-xs tracking-widest mb-3" style="color:#E71D36;">// ADICIONAL DE SOPORTE</p>
+        <h3 class="text-star-white text-2xl font-medium mb-3">Soporte Humano Prioritario</h3>
+        <p class="text-gray-500 text-sm leading-relaxed max-w-md">SLA garantizado de 2 horas, gerente de cuenta dedicado, llamadas estratégicas mensuales y horas ilimitadas de tareas L3.</p>
       </div>
       <div class="flex flex-col items-start md:items-end gap-4">
         <div class="flex items-center gap-4">
           <div class="text-right">
-            <p class="mono text-2xl text-star-white">+$149<span class="text-xs text-gray-500">/mo</span></p>
-            <p class="mono text-xs text-gray-500">added to any plan</p>
+            <p class="mono text-2xl text-star-white">+Q1,170<span class="text-xs text-gray-500">/mes</span></p>
+            <p class="mono text-xs text-gray-500">agregable a cualquier plan</p>
           </div>
           <div class="toggle-track" id="addon-toggle" onclick="toggleAddon()">
             <div class="toggle-thumb"></div>
           </div>
         </div>
-        <div id="addon-status" class="mono text-xs text-gray-600">STATUS: INACTIVE</div>
+        <div id="addon-status" class="mono text-xs text-gray-600">ESTADO: INACTIVO</div>
       </div>
     </div>
     <div id="addon-details" class="hidden mt-8 pt-8 grid sm:grid-cols-3 gap-6" style="border-top:1px solid rgba(255,255,255,.04);">
-      <div><p class="mono text-3xl mb-2" style="color:#E71D36;">2h</p><p class="mono text-xs text-gray-500">SLA RESPONSE TIME</p></div>
-      <div><p class="mono text-3xl mb-2" style="color:#E71D36;">∞</p><p class="mono text-xs text-gray-500">L3 TASK HOURS</p></div>
-      <div><p class="mono text-3xl mb-2" style="color:#E71D36;">1:1</p><p class="mono text-xs text-gray-500">DEDICATED MANAGER</p></div>
+      <div><p class="mono text-3xl mb-2" style="color:#E71D36;">2h</p><p class="mono text-xs text-gray-500">TIEMPO DE RESPUESTA SLA</p></div>
+      <div><p class="mono text-3xl mb-2" style="color:#E71D36;">∞</p><p class="mono text-xs text-gray-500">HORAS DE TAREAS L3</p></div>
+      <div><p class="mono text-3xl mb-2" style="color:#E71D36;">1:1</p><p class="mono text-xs text-gray-500">GERENTE DEDICADO</p></div>
     </div>
   </div>
 </section>
@@ -600,45 +600,45 @@ tailwind.config = {
           </svg>
           <span class="text-star-white mono tracking-[.2em]">NOHTEK</span>
         </div>
-        <p class="text-gray-600 text-xs leading-relaxed mb-5">Intelligence at every layer. ERP engineered for the businesses that will define the next decade.</p>
+        <p class="text-gray-600 text-xs leading-relaxed mb-5">Inteligencia en cada capa. ERP diseñado para los negocios que definirán la próxima década.</p>
         <div class="flex items-center gap-2">
           <div class="status-dot"></div>
-          <span class="mono text-xs text-gray-600">ALL SYSTEMS NOMINAL</span>
+          <span class="mono text-xs text-gray-600">TODOS LOS SISTEMAS NOMINALES</span>
         </div>
       </div>
       <div class="grid grid-cols-3 gap-10 text-xs">
         <div>
-          <p class="mono text-gray-600 tracking-widest mb-4">PRODUCT</p>
+          <p class="mono text-gray-600 tracking-widest mb-4">PRODUCTO</p>
           <div class="space-y-3">
-            <a href="#pillars" class="block text-gray-500 hover:text-gray-300 transition-colors">Architecture</a>
-            <a href="#pricing" class="block text-gray-500 hover:text-gray-300 transition-colors">Pricing</a>
+            <a href="#pillars" class="block text-gray-500 hover:text-gray-300 transition-colors">Arquitectura</a>
+            <a href="#pricing" class="block text-gray-500 hover:text-gray-300 transition-colors">Precios</a>
             <a href="#hardware" class="block text-gray-500 hover:text-gray-300 transition-colors">Hardware</a>
           </div>
         </div>
         <div>
-          <p class="mono text-gray-600 tracking-widest mb-4">COMPANY</p>
+          <p class="mono text-gray-600 tracking-widest mb-4">EMPRESA</p>
           <div class="space-y-3">
-            <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">About</a>
-            <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">Careers</a>
+            <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">Acerca de</a>
+            <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">Carreras</a>
             <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">Blog</a>
           </div>
         </div>
         <div>
-          <p class="mono text-gray-600 tracking-widest mb-4">CONTACT</p>
+          <p class="mono text-gray-600 tracking-widest mb-4">CONTACTO</p>
           <div class="space-y-3">
-            <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">Sales</a>
-            <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">Support</a>
-            <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">Partners</a>
+            <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">Ventas</a>
+            <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">Soporte</a>
+            <a href="#" class="block text-gray-500 hover:text-gray-300 transition-colors">Socios</a>
           </div>
         </div>
       </div>
     </div>
     <div class="flex flex-col md:flex-row justify-between items-center gap-4 pt-8" style="border-top:1px solid rgba(255,255,255,.03);">
-      <p class="mono text-xs text-gray-700">© 2025 NOHTEK ERP SOLUTION · ALL RIGHTS RESERVED</p>
+      <p class="mono text-xs text-gray-700">© 2025 NOHTEK SOLUCIÓN ERP · TODOS LOS DERECHOS RESERVADOS</p>
       <div class="flex gap-6 mono text-xs text-gray-700">
-        <a href="#" class="hover:text-gray-500 transition-colors">Privacy</a>
-        <a href="#" class="hover:text-gray-500 transition-colors">Terms</a>
-        <a href="#" class="hover:text-gray-500 transition-colors">Security</a>
+        <a href="#" class="hover:text-gray-500 transition-colors">Privacidad</a>
+        <a href="#" class="hover:text-gray-500 transition-colors">Términos</a>
+        <a href="#" class="hover:text-gray-500 transition-colors">Seguridad</a>
       </div>
     </div>
   </div>
@@ -715,9 +715,9 @@ function updateCart(){
   hk.forEach(k=>{const i=cart.hw[k];ot+=i.price;ct++;const r=document.createElement('div');r.className='cih cart-row pb-2';r.innerHTML=`<div class="flex justify-between"><span class="text-star-white text-xs">${i.name}</span><span class="mono text-xs" style="color:#FF9F1C;">${i.label}</span></div>`;he.appendChild(r);});
   document.getElementById('cart-addons-empty').style.display=cart.addon?'none':'block';
   ae.querySelectorAll('.cia').forEach(e=>e.remove());
-  if(cart.addon){mo+=149;ct++;const r=document.createElement('div');r.className='cia cart-row pb-2';r.innerHTML=`<div class="flex justify-between"><span class="text-star-white text-xs">Priority Support</span><span class="mono text-xs text-gray-500">+$149/mo</span></div>`;ae.appendChild(r);}
-  document.getElementById('total-monthly').textContent='$'+mo.toLocaleString();
-  document.getElementById('total-onetime').textContent='$'+ot.toLocaleString();
+  if(cart.addon){mo+=1170;ct++;const r=document.createElement('div');r.className='cia cart-row pb-2';r.innerHTML=`<div class="flex justify-between"><span class="text-star-white text-xs">Soporte Prioritario</span><span class="mono text-xs text-gray-500">+Q1,170/mes</span></div>`;ae.appendChild(r);}
+  document.getElementById('total-monthly').textContent='Q'+mo.toLocaleString();
+  document.getElementById('total-onetime').textContent='Q'+ot.toLocaleString();
   document.getElementById('cart-count').textContent=ct;
 }
 
@@ -734,7 +734,7 @@ function toggleHW(el,name,label,price){
 function toggleAddon(){
   cart.addon=!cart.addon;
   document.getElementById('addon-toggle').classList.toggle('on',cart.addon);
-  document.getElementById('addon-status').textContent=cart.addon?'STATUS: ACTIVE · +$149/mo':'STATUS: INACTIVE';
+  document.getElementById('addon-status').textContent=cart.addon?'ESTADO: ACTIVO · +Q1,170/mes':'ESTADO: INACTIVO';
   document.getElementById('addon-status').style.color=cart.addon?'#E71D36':'';
   document.getElementById('addon-details').classList.toggle('hidden',!cart.addon);
   document.getElementById('addon-card-wrapper').classList.toggle('active',cart.addon);
